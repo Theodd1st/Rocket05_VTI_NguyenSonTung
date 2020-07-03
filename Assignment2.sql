@@ -3,20 +3,20 @@ CREATE DATABASE Management;
 USE Management;
 
 CREATE TABLE Department(
-	DepartmentID	INT,
+	DepartmentID	INT AUTO_INCREMENT,
     DepartmentName	VARCHAR(50),
 	PRIMARY KEY (DepartmentID),
     UNIQUE KEY (DepartmentName)
 );
 
 CREATE TABLE `Position`(
-	PositionID		INT,
+	PositionID		INT AUTO_INCREMENT,
     PositionName	ENUM('Dev','Test','Scrum Master','PM'),
     PRIMARY KEY (PositionID)
 );
 
 CREATE TABLE `Account`(
-	AccountID		INT,
+	AccountID		INT AUTO_INCREMENT,
     Email			VARCHAR(50),
     Username		VARCHAR(50),
     Fullname		VARCHAR(50),
@@ -30,7 +30,7 @@ CREATE TABLE `Account`(
 );
 
 CREATE TABLE `Group`(
-	GroupID			INT,
+	GroupID			INT AUTO_INCREMENT,
     GroupName		VARCHAR(50),
 	CreatorID		INT,
 	CreatorDate		DATE,
@@ -48,20 +48,20 @@ CREATE TABLE GroupAccount(
 );
 
 CREATE TABLE TypeQuestion(
-	TypeID			INT,
+	TypeID			INT AUTO_INCREMENT,
     TypeName		ENUM('Essay','Multiple-Choice'),
     PRIMARY KEY (TypeID)
 );
 
 CREATE TABLE CategoryQuestion(
-	CategoryID		INT,
+	CategoryID		INT AUTO_INCREMENT,
     CategoryName	VARCHAR(50),
     PRIMARY KEY (CategoryID),
     UNIQUE KEY (CategoryName)
 );
 
 CREATE TABLE Question(
-	QuestionID		INT,
+	QuestionID		INT AUTO_INCREMENT,
     Content			VARCHAR(50),
     CategoryID		INT,
 	TypeID			INT,
@@ -74,7 +74,7 @@ CREATE TABLE Question(
 );
 
 CREATE TABLE Answer(
-	AnswerID		INT,
+	AnswerID		INT AUTO_INCREMENT,
     Content			VARCHAR(50),
  	QuestionID		INT,
 	isCorrect		ENUM('Yes','No'),
@@ -83,7 +83,7 @@ CREATE TABLE Answer(
 );
 
 CREATE TABLE Exam(
-	ExamID			INT,
+	ExamID			INT AUTO_INCREMENT,
     `Code`			INT, 
     Tile			VARCHAR(50),
     CategoryID		INT,
