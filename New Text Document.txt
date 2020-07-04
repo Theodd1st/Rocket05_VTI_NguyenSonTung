@@ -1,6 +1,0 @@
-Front-end (Giao diện dễ thao tác)
-Back-end 
-	- Server
-	- DataBase
-	  + Relation Database, connect tables
-	  + Tables
