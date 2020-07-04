@@ -3,26 +3,26 @@ CREATE DATABASE Management;
 USE Management;
 
 CREATE TABLE Department (
-    DepartmentID INT AUTO_INCREMENT,
-    DepartmentName VARCHAR(50),
+    DepartmentID 	TINYINT AUTO_INCREMENT,
+    DepartmentName 	NVARCHAR(50),
     PRIMARY KEY (DepartmentID),
     UNIQUE KEY (DepartmentName)
 );
 
 CREATE TABLE `Position` (
-    PositionID INT AUTO_INCREMENT,
-    PositionName ENUM('Dev', 'Test', 'Scrum Master', 'PM'),
+    PositionID 		TINYINT AUTO_INCREMENT,
+    PositionName 	ENUM('Dev', 'Test', 'Scrum Master', 'PM'),
     PRIMARY KEY (PositionID)
 );
 
 CREATE TABLE `Account` (
-    AccountID INT AUTO_INCREMENT,
-    Email VARCHAR(50),
-    Username VARCHAR(50),
-    Fullname VARCHAR(50),
-    DepartmentID INT,
-    PositionID INT,
-    CreateDate DATE,
+    AccountID 		TINYINT AUTO_INCREMENT,
+    Email 			VARCHAR(50),
+    Username 		VARCHAR(50),
+    Fullname 		NVARCHAR(50),
+    DepartmentID 	TINYINT,
+    PositionID 		TINYINT,
+    CreateDate 		DATETIME DEFAULT NOW(),
     PRIMARY KEY (AccountID),
     UNIQUE KEY (Username , Email),
     CONSTRAINT PositionFK FOREIGN KEY (PositionID)
@@ -34,10 +34,10 @@ CREATE TABLE `Account` (
 );
 
 CREATE TABLE `Group` (
-    GroupID INT AUTO_INCREMENT,
-    GroupName VARCHAR(50),
-    CreatorID INT,
-    CreatorDate DATE,
+    GroupID 		TINYINT AUTO_INCREMENT,
+    GroupName 		NVARCHAR(50),
+    CreatorID 		TINYINT,
+    CreatorDate 	DATETIME DEFAULT NOW(),
     PRIMARY KEY (GroupID),
     UNIQUE KEY (GroupName),
     CONSTRAINT CreatorFK1 FOREIGN KEY (CreatorID)
@@ -46,9 +46,9 @@ CREATE TABLE `Group` (
 );
 
 CREATE TABLE GroupAccount (
-    GroupID INT,
-    AccountID INT,
-    JoinDate DATE,
+    GroupID 		TINYINT,
+    AccountID 		TINYINT,
+    JoinDate 		DATETIME DEFAULT NOW(),
     CONSTRAINT GroupFK FOREIGN KEY (GroupID)
         REFERENCES `Group` (GroupID)
         ON DELETE CASCADE,
@@ -58,25 +58,25 @@ CREATE TABLE GroupAccount (
 );
 
 CREATE TABLE TypeQuestion (
-    TypeID INT AUTO_INCREMENT,
-    TypeName ENUM('Essay', 'Multiple-Choice'),
+    TypeID 			TINYINT AUTO_INCREMENT,
+    TypeName 		ENUM('Essay', 'Multiple-Choice'),
     PRIMARY KEY (TypeID)
 );
 
 CREATE TABLE CategoryQuestion (
-    CategoryID INT AUTO_INCREMENT,
-    CategoryName VARCHAR(50),
+    CategoryID 		TINYINT AUTO_INCREMENT,
+    CategoryName 	VARCHAR(50),
     PRIMARY KEY (CategoryID),
     UNIQUE KEY (CategoryName)
 );
 
 CREATE TABLE Question (
-    QuestionID INT AUTO_INCREMENT,
-    Content VARCHAR(50),
-    CategoryID INT,
-    TypeID INT,
-    CreatorID INT,
-    CreateDate DATE,
+    QuestionID 		INT AUTO_INCREMENT,
+    Content 		NVARCHAR(50),
+    CategoryID 		TINYINT,
+    TypeID 			TINYINT,
+    CreatorID 		TINYINT,
+    CreateDate 		DATETIME DEFAULT NOW(),
     PRIMARY KEY (QuestionID),
     CONSTRAINT CategoryFK1 FOREIGN KEY (CategoryID)
         REFERENCES CategoryQuestion (CategoryID)
@@ -90,10 +90,10 @@ CREATE TABLE Question (
 );
 
 CREATE TABLE Answer (
-    AnswerID INT AUTO_INCREMENT,
-    Content VARCHAR(50),
-    QuestionID INT,
-    isCorrect ENUM('Yes', 'No'),
+    AnswerID 		TINYINT AUTO_INCREMENT,
+    Content 		NVARCHAR(50),
+    QuestionID 		INT,
+    isCorrect 		ENUM('Yes', 'No'),
     PRIMARY KEY (AnswerID),
     CONSTRAINT QuestionFK1 FOREIGN KEY (QuestionID)
         REFERENCES Question (QuestionID)
@@ -101,13 +101,13 @@ CREATE TABLE Answer (
 );
 
 CREATE TABLE Exam (
-    ExamID INT AUTO_INCREMENT,
-    `Code` INT,
-    Tile VARCHAR(50),
-    CategoryID INT,
-    Duration TIME,
-    CreatorID INT,
-    CreateDate DATE,
+    ExamID 			INT AUTO_INCREMENT,
+    `Code` 			INT,
+    Tile 			VARCHAR(50),
+    CategoryID 		TINYINT,
+    Duration 		TIME NOT NULL,
+    CreatorID 		TINYINT,
+    CreateDate 		DATETIME DEFAULT NOW(),
     PRIMARY KEY (ExamID),
     UNIQUE KEY (`Code` , Tile),
     CONSTRAINT CategoryFK2 FOREIGN KEY (CategoryID)
@@ -119,8 +119,8 @@ CREATE TABLE Exam (
 );
 
 CREATE TABLE ExamQuestion (
-    ExamID INT,
-    QuestionID INT,
+    ExamID 			INT,
+    QuestionID 		INT,
     CONSTRAINT ExamFK FOREIGN KEY (ExamID)
         REFERENCES Exam (ExamID)
         ON DELETE CASCADE,
