@@ -22,5 +22,8 @@ public class CongNhan extends CanBo {
 	public void setRank(int rank) {
 		this.rank = rank;
 	}
+	public String toString() {
+		return super.toString() + " " + rank;
+	}
 
 }

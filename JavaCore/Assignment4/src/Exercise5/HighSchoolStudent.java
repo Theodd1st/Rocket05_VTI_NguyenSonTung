@@ -10,4 +10,10 @@ public class HighSchoolStudent extends Student {
 		this.desiredUniversity = desiredUniversity;
 	}
 
+	@Override
+	public String toString() {
+		return "HighSchoolStudent [ID " + this.id + " name " + this.name + " clazz=" + clazz + ", desiredUniversity="
+				+ desiredUniversity + "]";
+	}
+
 }

@@ -18,5 +18,7 @@ public class NhanVien extends CanBo {
 	public void setJob(String job) {
 		this.job = job;
 	}
-
+	public String toString() {
+		return super.toString() + " " + job;
+	}
 }

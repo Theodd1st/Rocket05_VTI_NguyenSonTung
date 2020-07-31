@@ -1,7 +1,13 @@
 package Exercise6;
 
+import java.util.ArrayList;
+
 public abstract class Phone {
-	Contact[] contacts;
+
+	ArrayList<Contact> contacts = null;
+
+	public Phone() {
+	}
 
 	public abstract void insertContact(String name, String phone);
 

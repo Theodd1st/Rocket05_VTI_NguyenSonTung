@@ -19,4 +19,7 @@ public class KySu extends CanBo {
 		this.branch = branch;
 	}
 
+	public String toString() {
+		return super.toString() + " " + branch;
+	}
 }
