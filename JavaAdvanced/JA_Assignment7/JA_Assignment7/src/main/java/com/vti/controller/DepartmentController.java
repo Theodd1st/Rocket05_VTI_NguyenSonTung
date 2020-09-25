@@ -27,7 +27,6 @@ import com.vti.service.DepartmentService;
 
 @RestController
 @RequestMapping(value = "/departments")
-@CrossOrigin(origins = "http://127.0.0.1:5501")
 @Validated
 public class DepartmentController {
 
